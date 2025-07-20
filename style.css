@@ -65,6 +65,7 @@ ul {
     backdrop-filter: blur(30px);
     border-radius: 15px;
     box-shadow: 0 5px 30px 0 rgba(12, 16, 85, 0.37);
+    transition: all 0.3s ease-in-out;
     display: flex;
     padding-right: 35px;
     flex-direction: row;
@@ -72,15 +73,12 @@ ul {
     justify-content: space-around;
 }
 
-.cards:hover span {
-    color: #fff;
-
+li:hover {
+    border: 2px solid linear-gradient(to bottom, purple, blue);
+    padding: 5px;
+    margin: 5px;
+    transition: all 0.3s ease-in-out;
 }
-
-.cards:-ms-tooltip {
-    text-shadow: 0px -1px 0px rgba(0,0,0,0.4);
-}
-
 
 footer {
     text-align: center;
