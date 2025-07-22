@@ -1,78 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Security </title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus Cloud Shield</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://www.w3schools.com/lib/w3.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Cyber Security</h1>
-        <!--logo goes next to the header for all screen types-->
-        <div class="logo">logo</div>
-    </header>
+  <header>
+    <img src="assets/logo.png" alt="Nexus Logo" class="logo" />
+    <h1>Nexus Cloud Shield - Cyber Security</h1>
+  </header>
 
-    <div class="container">
+  <nav class="card-nav">
+    <button onclick="scrollToCard(0)"> Cloud</button>
+    <button onclick="scrollToCard(1)"> Recovery</button>
+    <button onclick="scrollToCard(2)"> Security</button>
+    <button onclick="scrollToCard(3)"> Development</button>
+    <button onclick="scrollToCard(4)"> Network</button>
+    <button onclick="scrollToCard(5)"> Backup</button>
+    <button onclick="scrollToCard(6)"> Threats</button>
+    <button onclick="scrollToCard(7)"> Traffic</button>
+  </nav>
 
-        <aside class="box-dashb">dashboard
-            <div class="title">title</div>
-            <div class="menu">menu</div>
-            <div class="login">login</div>
-            <div class="payment">payment</div>
-            <div class="settings">settings</div>
-        </aside>
+  <main class="dashboard">
+    <section class="card">
+      <h2> Cloud Storage</h2>
+      <p>Internet: Good</p>
+      <p>Storage: 75% used</p>
+      <p>Next Update: 2025/09/01</p>
+      <span class="status red"> Warning</span>
+      <div class="chart" id="cloudChart"></div>
+    </section>
 
-        <main>
-                <ul class="searchbar">
-<!--include the search button, takes the user to the selected subtopic...-->
-                    <li><a href="#">cm1</a></li>
-                    <li><a href="#">cm2</a></li>
-                    <li><a href="#">cm3</a></li>
-                    <li><a href="#">cm4</a></li>
-                    <li><a href="#">cm5</a></li>
-                    <li><a href="#">cm6</a></li>
-                    <li><a href="#">cm7</a></li>
-                    <li><a href="#">cm8</a></li>
+    <section class="card">
+      <h2> Recovery</h2>
+      <p>Disaster Recovery: Updated</p>
+      <p>Safe Boot: Activated</p>
+      <p>Safe Mode: Active [Last Update: 2025/07/01]</p> <!--include stats on System Image Backu pg325-->
+      <span class="status green"><!--Green tick for pass/active--> Active</span>
+      <div class="chart" id="recoveryChart"></div>
+    </section>
 
-<!--inside search bar forthe user to show card menu..very little details here
-            <div class="ins-search">ins-search</div>-->
-                </ul>
-        
+    <section class="card">
+      <h2> Security</h2>
+      <p>Access Logs Monitored</p>
+      <p>Firewall: Active [Last Update: 2024/01/03]</p>
+      <p>Risk Level: Moderate</p>
+      <span class="status red"><!--orange excl mark for warning--> Warning</span> <!--also include stats on updates vs threats chart-->
+    </section>
 
-<!--cards must have round corners, hover-over, and slight shadows-->
-        <div class="cards">
-        <div class="card1">card1</div>
+    <section class="card">
+      <h2> Development</h2>
+      <p>Games in Dev: 3</p>
+      <p>Tools Installed: 12</p>
+      <p>Mobile App: 90% complete</p>
+      <span class="status yellow"> In Progress</span>
+    </section>
 
-        <div class="card2">card2</div>
+    <section class="card">
+      <h2> Network Connectivity</h2>
+      <p>Speed: 300MBPS</p>
+      <p>Connected Devices: 215</p>
+      <p>Active Connections: 215</p>
+      <span class="status green">Active </span>
+    </section>
 
-        <div class="card3">card3</div>
+    <section class="card">
+      <h2> Backup Systems</h2>
+      <p>System Image: Latest</p>
+      <p>Startup Repair: Available</p>
+      <p>Restore Point: 2025-07-01</p>
+      <span class="status blue"> Ready</span>
+    </section>
 
-        <div class="card4">card4</div>
+    <section class="card">
+      <h2> Threat Detection</h2>
+      <p>Current Threats: 105</p>
+      <p>Critical: 82, Medium: 13, Low: 10</p>
+      <span class="status red"> Warning Alert</span>
+      <div class="chart" id="pieChart"></div>
+    </section>
 
-        <div class="card5">card5</div>
+    <section class="card">
+      <h2> Network Traffic</h2>
+      <p>Live data from past 6 hours</p>
+      <p>Peak Usage: 94%</p>
+      <span class="status yellow"> In Progress</span>
+      <div class="chart" id="lineGraph"></div>
+    </section>
+  </main>
 
-        <div class="card6">card6</div>
-
-        <div class="card7">card7</div>
-
-        <div class="card8">card8</div>
-
-        </div>
-        </main>
-
-        <!--<div class="srollbar"> *******scrollbar cteating a scrollbar showing more cards.
-            <div class="buttonl">buttonleft</div>
-            <div class="buttonr">buttonright</div>
-            <div-->
-
-        </div>
-    </div>
-
-    <footer>
-        <h4>footer</h4>
-    </footer>
+  <script src="script.js"></script>
 </body>
 </html>
