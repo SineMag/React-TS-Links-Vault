@@ -1,0 +1,49 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  padding: 20px; 
+  display: flex;
+  flex-direction: column;
+}
+
+/* top section  */
+.topSection {
+  border: 1px solid green;
+  width: 100%;
+  height: 48vh;
+  display: flex;
+
+}
+
+
+.lineOne {
+  background-color: red; 
+  border-radius: 50%;
+  width: 30vh;
+  height: 30vh;
+
+}
+
+/* middle section */
+.middleSection {
+  border: 1px solid red;
+  width: 100%;
+  height: 25vh;
+}
+
+/* bottom section */
+.bottomSection {
+  border: 1px solid blue;
+  width: 100%;
+  height: 25vh;
+}
+
