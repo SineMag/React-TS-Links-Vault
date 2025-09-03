@@ -6,15 +6,15 @@ import Rectangle from './components/Rectangle.js'
 import Square from './components/Square.js'
 import Circle from './components/Circle.js'
 import HorizontalRectangle from './components/HorizontalRectangle.js'
+import LargestBar from './components/LargestBar.js'
 
 function App() {
   
 
   return (
     <>
-    <div style={{display: 'flex',  justifyContent: 'center'}}>
-      
-      <div style={{border:'1px solid black'}}>
+    <div >
+      <div style={{border:'1px solid black', display:'flex', flexDirection:'column'}}>
         
         <Rectangle color="#F9A73D"  />
         <div style={{display: 'flex' }}>
@@ -36,7 +36,7 @@ function App() {
     </div>
     <div style={{display: 'flex'}} >
           <Circle color='#62C2E8' />
-          <HorizontalRectangle color='red' />
+          <LargestBar color='red' style={{width: '90%'}} />
           <Circle color='blue' />
 
 
