@@ -4,8 +4,8 @@ export default function Searchbar() {
   return (
     <div className='searchbar' style={{
         border:'1px solid #347fc4',
-        width: '40vw',
-        height:'3vh',
+        width: '80%',
+        height:'5%',
         marginTop:'10px',
         borderRadius:'15px',
         display:'flex',
@@ -15,12 +15,14 @@ export default function Searchbar() {
     }}>
         <div className='searchButton' style={{
             border: '1px solid black',
-            width:'3vw',
-            height:'3vh',
+            width:'1.3rem',
+            height:'1.3rem',
             borderRadius:'50%',
             position:'relative',
             display:'flex',
-            justifyContent:'end'
+            justifyContent:'end',
+            marginRight:'0px',
+            boxShadow:'1px 0px 0 1px'
 
         }}>
 

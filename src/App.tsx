@@ -2,7 +2,8 @@
 import React from "react";
 import "./App.css";
 import Heading from "./components/Heading";
-import Searchbar from "./components/Searchbar"
+import Searchbar from "./components/Searchbar";
+import Form from "./components/Form";
 
 function App() {
   return <>
@@ -18,6 +19,7 @@ function App() {
 }}>
   <Heading />
   <Searchbar />
+  <Form />
   </div>
   </>;
 }
