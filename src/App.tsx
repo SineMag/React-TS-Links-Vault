@@ -6,10 +6,11 @@ import Searchbar from "./components/Searchbar";
 import Form from "./components/Form";
 import Button from "./components/Button";
 import Edit from './components/Edit';
-
+import Footer from "./components/Footer";
 
 function App() {
   return <>
+  
 <div  style={{
   // border:'1px solid red',
   display:'flex',
@@ -20,12 +21,26 @@ function App() {
   alignItems:'center'
 
 }}>
+  <div>
   <Heading />
   <Searchbar />
   <Form />
   <Button />
   <Edit /> 
+     <div style={{
+    border:'1px solid red',
+    height:'10%',
+    marginTop:'3rem'
+   }}>
+    <Footer />
   </div>
+  </div>
+
+
+  </div>
+
+
+ 
   </>;
 }
 

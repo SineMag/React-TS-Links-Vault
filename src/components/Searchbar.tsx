@@ -12,14 +12,14 @@ export default function Searchbar() {
         border: "1px solid #347fc4",
         borderRadius: "15px",
         padding: "5px",
-        gap: "5px", // space between input and button
+        gap: "5px", 
       }}
     >
       <input
         type="text"
-        placeholder="Enter your fav link here..."
+        placeholder="Search "
         style={{
-          flex: 1, // input takes all available space
+          flex: 1,
           border: "none",
           outline: "none",
           fontSize: "0.8rem",

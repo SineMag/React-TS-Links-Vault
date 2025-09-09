@@ -20,7 +20,7 @@ export default function Form() {
         type="text"
         id="title"
         name="title"
-        placeholder="Enter the name for your link..."
+        placeholder="Enter the name for your link"
         style={{
           border: "1px solid #347fc4",
           borderRadius: "15px",
@@ -54,7 +54,7 @@ export default function Form() {
           type="text"
           id="link"
           name="link"
-          placeholder="Link description..."
+          placeholder="Link description"
           style={{
             border: "none",
             outline: "none",
@@ -71,7 +71,7 @@ export default function Form() {
         type="text"
         id="description"
         name="description"
-        placeholder="Enter/paste your link here..."
+        placeholder="Enter/paste your link here"
         style={{
           border: "1px solid #347fc4",
           borderRadius: "15px",
