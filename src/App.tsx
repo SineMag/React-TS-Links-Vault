@@ -27,11 +27,7 @@ function App() {
   <Form />
   <Button />
   <Edit /> 
-     <div style={{
-    border:'1px solid red',
-    height:'10%',
-    marginTop:'3rem'
-   }}>
+     <div>
     <Footer />
   </div>
   </div>
