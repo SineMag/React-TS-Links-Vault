@@ -9,7 +9,7 @@ export default function Heading() {
         marginTop:'10px'
 
     }}>
-      heading
+      heading + nav
     </div>
   )
 }

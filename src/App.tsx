@@ -4,6 +4,9 @@ import "./App.css";
 import Heading from "./components/Heading";
 import Searchbar from "./components/Searchbar";
 import Form from "./components/Form";
+import Button from "./components/Button";
+import Edit from './components/Edit';
+
 
 function App() {
   return <>
@@ -20,6 +23,8 @@ function App() {
   <Heading />
   <Searchbar />
   <Form />
+  <Button />
+  <Edit /> 
   </div>
   </>;
 }
