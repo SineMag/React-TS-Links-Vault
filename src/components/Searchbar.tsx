@@ -1,6 +1,5 @@
 import React from "react";
-import { FaSearch } from "react-icons/fa";
-
+import { IoSearchCircleSharp } from "react-icons/io5";
 
 export default function Searchbar() {
   return (
@@ -14,7 +13,7 @@ export default function Searchbar() {
         border: "1px solid #347fc4",
         borderRadius: "15px",
         padding: "5px",
-        gap: "5px", 
+        gap: "5px",
       }}
     >
       <input
@@ -25,26 +24,23 @@ export default function Searchbar() {
           border: "none",
           outline: "none",
           fontSize: "0.8rem",
-          paddingLeft:'5px',
+          paddingLeft: "5px",
         }}
       />
-      
 
       <div
         className="searchButton"
         style={{
-          width: "1.3rem",
-          height: "1.3rem",
+          fontSize: "2rem",
+
           borderRadius: "50%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          boxShadow: "1px 0px 0 1px",
           cursor: "pointer",
         }}
       >
-        <FaSearch />
-       
+        <IoSearchCircleSharp />
       </div>
     </div>
   );

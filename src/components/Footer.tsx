@@ -5,13 +5,11 @@ const Footer: React.FC = () => {
   return (
     <footer
       style={{
-        // border:'1px solid red',
         width: '100%',
-        height:'1rem',
-        padding: '2rem 0',
+        height:'15%',
         display: 'flex',
         justifyContent: 'center',
-        gap: '2rem',
+        gap: '1rem',
       }}
     >
       <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">

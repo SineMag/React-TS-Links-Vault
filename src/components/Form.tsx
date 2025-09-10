@@ -9,6 +9,7 @@ export default function Form() {
       style={{
         marginTop: "20px",
         width: "100%",
+        height:'60%',
         display: "flex",
         flexDirection: "column",
         gap: "1rem",
@@ -21,10 +22,9 @@ export default function Form() {
           padding: "10px",
           borderRadius: "15px",
           border: "none",
-          backgroundColor: "white",
-          width:'30%',
+          backgroundColor: "#7456F5",
+          maxWidth:'20%',
           color: "black",
-          boxShadow:'0 0px 0.5px 01px',
           cursor: "pointer",
           
         }}

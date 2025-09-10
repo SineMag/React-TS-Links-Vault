@@ -13,15 +13,19 @@ function App() {
   
 <div  style={{
   // border:'1px solid red',
-  display:'flex',
-  flexDirection:'column',
+  // display:'flex',
+  // flexDirection:'column',
   width: '100%',
   height:'100%',
   justifyContent:'start',
-  alignItems:'center'
+  alignItems:'start',
+  padding:'0 3%',
 
 }}>
-  <div>
+  <div style={{
+    height:'100%',
+    width:'100',
+  }}>
   
   <Heading />
  

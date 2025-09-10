@@ -8,10 +8,9 @@ import { CgProfile } from "react-icons/cg";
 
 export default function Heading() {
   const iconStyle = {
-    fontSize: "0.8rem",
+    fontSize: "2rem",
     padding: "5px",
     borderRadius: "50%",
-    backgroundColor: "white",
     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1)",
     cursor: "pointer",
     
@@ -21,52 +20,63 @@ export default function Heading() {
     <div
       className="heading"
       style={{
-        border: "5px solid #347fc4",
-        width: "40vw",
-        height: "5vh",
-        marginTop: "10px",
+        width: "100%",
+        height: "15%",
+        marginBottom: "5%",
         borderRadius: "15px",
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
-        padding: "5px",
         alignItems: "center",
       }}
     >
-      <div style={{
-        display:'flex',
-        flexDirection:'row',
-        justifyContent:'space-between',
-        width:'100%'
-      }}>
-      <div
-        className="logo"
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
-        <h2 style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <FaLink /> Links Vault
-        </h2>
-      </div>
       <div
         style={{
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
-          alignItems: "center",
-          gap: "15px",
+          width: "100%",
         }}
       >
-        <span style={iconStyle}><FaHome /></span>
-        <span style={iconStyle}><FaSearch /></span>
-        <span style={iconStyle}><FaUsersViewfinder /></span>
-        <span style={iconStyle}><FaHistory /></span>
-        <span style={iconStyle}><CgProfile /></span>
+        <div
+          className="logo"
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <h2 style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <FaLink /> Links Vault
+          </h2>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap:'5%',
+            width:'30%'
+          }}
+        >
+          <span style={iconStyle}>
+            <FaHome />
+          </span>
+          <span style={iconStyle}>
+            <FaSearch />
+          </span>
+          <span style={iconStyle}>
+            <FaUsersViewfinder />
+          </span>
+          <span style={iconStyle}>
+            <FaHistory />
+          </span>
+          <span style={iconStyle}>
+            <CgProfile />
+          </span>
+        </div>
       </div>
-    </div>
     </div>
   );
 }
