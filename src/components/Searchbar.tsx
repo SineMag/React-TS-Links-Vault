@@ -1,7 +1,12 @@
 import React from "react";
 import { IoSearchCircleSharp } from "react-icons/io5";
+import LinkTable from "./LinkTable";
 
 export default function Searchbar() {
+  const searchLink = () =>
+  {
+   <LinkTable />;
+  }
   return (
     <div
       className="searchbar-container"
@@ -10,7 +15,7 @@ export default function Searchbar() {
         alignItems: "center",
         width: "100%",
         marginTop: "10px",
-        border: "1px solid #347fc4",
+        border: "1px solid black",
         borderRadius: "15px",
         padding: "5px",
         gap: "5px",
@@ -28,7 +33,7 @@ export default function Searchbar() {
         }}
       />
 
-      <div
+      <button onClick={searchLink}
         className="searchButton"
         style={{
           fontSize: "2rem",
@@ -38,10 +43,11 @@ export default function Searchbar() {
           alignItems: "center",
           justifyContent: "center",
           cursor: "pointer",
+          textDecoration:'none'
         }}
       >
-        <IoSearchCircleSharp />
-      </div>
+        <IoSearchCircleSharp/>
+      </button>
     </div>
   );
 }

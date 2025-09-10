@@ -3,13 +3,16 @@ import { FaFacebook, FaTwitter, FaGithub, FaPinterest } from 'react-icons/fa';
 
 const Footer: React.FC = () => {
   return (
-    <footer
+    <div className='footer'
       style={{
         width: '100%',
         height:'15%',
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'end',
+        alignItems:'end',
         gap: '1rem',
+        border:'1px solid red',
+        marginRight:'-5%'
       }}
     >
       <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
@@ -24,7 +27,7 @@ const Footer: React.FC = () => {
       <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer">
         <FaPinterest size={30} color="#bd081c" />
       </a>
-    </footer>
+    </div>
   );
 };
 

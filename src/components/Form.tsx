@@ -1,35 +1,37 @@
 import React from "react";
+import LinkTable from "./LinkTable";
 
 export default function Form() {
+  const saveButton = () => {
+    <LinkTable />;
+  };
   return (
-    
     <form
       action="#"
       method="get"
       style={{
         marginTop: "20px",
         width: "100%",
-        height:'60%',
+        height: "60%",
         display: "flex",
         flexDirection: "column",
         gap: "1rem",
         borderRadius: "15px",
       }}
     >
-            <button
+      <button
         type="submit"
         style={{
           padding: "10px",
           borderRadius: "15px",
           border: "none",
           backgroundColor: "#7456F5",
-          maxWidth:'20%',
-          color: "black",
+          maxWidth: "20%",
+          color: "white",
           cursor: "pointer",
-          
         }}
       >
-        + Add Link
+        Add Link Below
       </button>
       {/* Title */}
       <label htmlFor="title">Title*</label>
@@ -65,7 +67,7 @@ export default function Form() {
             borderRadius: "10px 0 0 10px",
           }}
         >
-          http://
+          https://
         </span>
         <input
           type="text"
@@ -98,7 +100,7 @@ export default function Form() {
         aria-required="true"
       />
 
-            {/*Tags */}
+      {/*Tags */}
       <label htmlFor="description">Tags(Comma Separated)</label>
       <input
         type="text"
@@ -126,6 +128,7 @@ export default function Form() {
           color: "#fff",
           cursor: "pointer",
         }}
+        onClick={saveButton}
       >
         Save Link
       </button>
