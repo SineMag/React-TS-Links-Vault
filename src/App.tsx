@@ -8,6 +8,7 @@ import Edit from "./components/Edit";
 import Footer from "./components/Footer";
 import LinkTable from "./components/LinkTable";
 import Cards from "./components/Cards";
+import Modal from "./components/Modal";
 
 function App() {
   return (
@@ -21,29 +22,29 @@ function App() {
           height: "100%",
           justifyContent: "start",
           alignItems: "start",
-          padding: "0 3%",
         }}
       >
+        <Heading />
         <div
           style={{
             height: "100%",
             width: "100",
+            padding: "0 4%",
           }}
         >
-          <Heading />
-
           <Searchbar />
           <Form />
-         
 
           <LinkTable />
 
           {/* to show cards with the user's information */}
           <Cards />
+          <Modal />
 
-          <Footer />
-        </div>
+        
       </div>
+        <Footer />
+        </div>
     </>
   );
 }

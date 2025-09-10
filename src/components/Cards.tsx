@@ -1,4 +1,7 @@
 import React from "react";
+import { MdModeEdit } from "react-icons/md";
+import { RiDeleteBinLine } from "react-icons/ri";
+import Modal from "./Modal";
 
 interface ClickButton {
   title: string;
@@ -8,6 +11,9 @@ interface ClickButton {
 }
 
 export default function Cards() {
+  const deleteClick = () => {
+    alert('the button works');
+  }
   return (
     <div
       style={{
@@ -18,6 +24,7 @@ export default function Cards() {
         boxShadow: "1px 2px 3px 4px rgba(20,20,20,0.4)",
         padding: "1%",
         display: "flex",
+        
       }}
     >
       {/* options for tags */}
@@ -34,8 +41,10 @@ export default function Cards() {
       </div>
 
       {/* options for link details */}
-      <div>
-        <h4 style={{ display: "flex" }}>
+      <div style={{
+        width:'100%',
+      }}>
+        <h4 style={{width:'100%', display: "flex" }}>
           Title: <p>****************</p>
         </h4>
         <br />
@@ -43,9 +52,18 @@ export default function Cards() {
           Link: <p>****************</p>
         </h4>
         <br />
-        <h4 style={{ display: "flex" }}>
-          Description: <p>****************</p>
+        <h4 style={{ display: "flex", maxWidth:'100%' }}>
+          Description: <p>***********</p>
         </h4>
+      
+
+      {/* edit and delete icons/buttons */}
+
+      <div className="editDelete" style={{padding:'1%', maxWidth:'100%', display: "flex", justifyContent:'space-between'
+       }}>
+        <button className="edit" style={{fontSize:'150%'}}> <MdModeEdit  /></button>
+        <button onClick={deleteClick} className="delete" style={{fontSize:'150%'}}><RiDeleteBinLine color="red"  /> <Modal /></button>
+      </div>
       </div>
     </div>
   );

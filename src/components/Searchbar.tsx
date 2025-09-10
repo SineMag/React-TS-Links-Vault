@@ -46,7 +46,7 @@ export default function Searchbar() {
           textDecoration:'none'
         }}
       >
-        <IoSearchCircleSharp/>
+        <IoSearchCircleSharp color="black"/>
       </button>
     </div>
   );

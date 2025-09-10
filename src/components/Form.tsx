@@ -1,9 +1,10 @@
 import React from "react";
 import LinkTable from "./LinkTable";
+import Cards from "./Cards";
 
 export default function Form() {
   const saveButton = () => {
-    <LinkTable />;
+    <Cards />;
   };
   return (
     <form

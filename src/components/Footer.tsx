@@ -11,7 +11,6 @@ const Footer: React.FC = () => {
         justifyContent: 'end',
         alignItems:'end',
         gap: '1rem',
-        border:'1px solid red',
         marginRight:'-5%'
       }}
     >
