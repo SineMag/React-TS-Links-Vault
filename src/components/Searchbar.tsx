@@ -1,4 +1,6 @@
 import React from "react";
+import { FaSearch } from "react-icons/fa";
+
 
 export default function Searchbar() {
   return (
@@ -7,7 +9,7 @@ export default function Searchbar() {
       style={{
         display: "flex",
         alignItems: "center",
-        width: "80%",
+        width: "100%",
         marginTop: "10px",
         border: "1px solid #347fc4",
         borderRadius: "15px",
@@ -17,7 +19,7 @@ export default function Searchbar() {
     >
       <input
         type="text"
-        placeholder="Search "
+        placeholder="Search Links "
         style={{
           flex: 1,
           border: "none",
@@ -31,7 +33,6 @@ export default function Searchbar() {
       <div
         className="searchButton"
         style={{
-          border: "1px solid black",
           width: "1.3rem",
           height: "1.3rem",
           borderRadius: "50%",
@@ -42,6 +43,7 @@ export default function Searchbar() {
           cursor: "pointer",
         }}
       >
+        <FaSearch />
        
       </div>
     </div>

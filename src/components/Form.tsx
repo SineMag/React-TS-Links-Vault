@@ -2,18 +2,35 @@ import React from "react";
 
 export default function Form() {
   return (
+    
     <form
       action="#"
       method="get"
       style={{
         marginTop: "20px",
-        width: "80%",
+        width: "100%",
         display: "flex",
         flexDirection: "column",
         gap: "1rem",
         borderRadius: "15px",
       }}
     >
+            <button
+        type="submit"
+        style={{
+          padding: "10px",
+          borderRadius: "15px",
+          border: "none",
+          backgroundColor: "white",
+          width:'30%',
+          color: "black",
+          boxShadow:'0 0px 0.5px 01px',
+          cursor: "pointer",
+          
+        }}
+      >
+        + Add Link
+      </button>
       {/* Title */}
       <label htmlFor="title">Title*</label>
       <input
@@ -71,7 +88,7 @@ export default function Form() {
         type="text"
         id="description"
         name="description"
-        placeholder="Enter/paste your link here"
+        placeholder="Link description"
         style={{
           border: "1px solid #347fc4",
           borderRadius: "15px",
@@ -81,24 +98,23 @@ export default function Form() {
         aria-required="true"
       />
 
-            <button
-        type="submit"
+            {/*Tags */}
+      <label htmlFor="description">Tags(Comma Separated)</label>
+      <input
+        type="text"
+        id="description"
+        name="description"
+        placeholder="Link tags"
         style={{
-          padding: "10px",
+          border: "1px solid #347fc4",
           borderRadius: "15px",
-          border: "none",
-          backgroundColor: "white",
-          width:'30%',
-          color: "black",
-          boxShadow:'0 0px 0.5px 01px',
-          cursor: "pointer",
-          
+          padding: "10px",
+          outline: "none",
         }}
-      >
-        + Add another
-      </button>
+        aria-required="false"
+      />
 
-      {/* Submit Button */}
+      {/* save Button */}
       <button
         type="submit"
         style={{
@@ -111,7 +127,7 @@ export default function Form() {
           cursor: "pointer",
         }}
       >
-        Submit
+        Save Link
       </button>
     </form>
   );

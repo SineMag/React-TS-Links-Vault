@@ -22,11 +22,13 @@ function App() {
 
 }}>
   <div>
+  
   <Heading />
+ 
   <Searchbar />
   <Form />
   <Button />
-  <Edit /> 
+   
      <div>
     <Footer />
   </div>
