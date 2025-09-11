@@ -1,138 +1,262 @@
-import React from "react";
-import LinkTable from "./LinkTable";
+import React, { useState, useEffect } from "react";
+import type { LinkItem } from "../types"; // ✅ type-only import
+import { getLinks, saveLinks } from "../utils/LocalStorageFunction";
 import Cards from "./Cards";
+import { MdDoNotDisturbAlt } from "react-icons/md";
 
 export default function Form() {
-  const saveButton = () => {
-    <Cards />;
-  };
-  return (
-    <form
-      action="#"
-      method="get"
-      style={{
-        marginTop: "20px",
-        width: "100%",
-        height: "60%",
-        display: "flex",
-        flexDirection: "column",
-        gap: "1rem",
-        borderRadius: "15px",
-      }}
-    >
-      <button
-        type="submit"
-        style={{
-          padding: "10px",
-          borderRadius: "15px",
-          border: "none",
-          backgroundColor: "#7456F5",
-          maxWidth: "20%",
-          color: "white",
-          cursor: "pointer",
-        }}
-      >
-        Add Link Below
-      </button>
-      {/* Title */}
-      <label htmlFor="title">Title*</label>
-      <input
-        type="text"
-        id="title"
-        name="title"
-        placeholder="Enter the name for your link"
-        style={{
-          border: "1px solid #347fc4",
-          borderRadius: "15px",
-          padding: "10px",
-          outline: "none",
-        }}
-        aria-required="true"
-      />
+  const [title, setTitle] = useState("");
+  const [link, setLink] = useState("");
+  const [description, setDescription] = useState("");
+  const [tags, setTags] = useState("");
+  const [links, setLinks] = useState<LinkItem[]>([]);
+  const [editId, setEditId] = useState<string | null>(null);
 
-      {/* Link */}
-      <label htmlFor="link">Link*</label>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          border: "1px solid #347fc4",
-          borderRadius: "15px",
-          padding: "5px",
-        }}
+  //  from localStorage
+  useEffect(() => {
+    setLinks(getLinks());
+  }, []);
+
+  // to localStorage
+  useEffect(() => {
+    saveLinks(links);
+  }, [links]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!title || !link || !description) return;
+
+    if (editId) {
+      setLinks(
+        links.map((l) =>
+          l.id === editId
+            ? { ...l, title, link: `https://${link}`, description, tags }
+            : l
+        )
+      );
+      setEditId(null);
+    } else {
+      const newLink: LinkItem = {
+        id: Date.now().toString(),
+        title,
+        link: `https://${link}`,
+        description,
+        tags,
+      };
+      setLinks([...links, newLink]);
+    }
+
+    setTitle("");
+    setLink("");
+    setDescription("");
+    setTags("");
+  };
+
+  const handleDelete = (id: string) => {
+    setLinks(links.filter((l) => l.id !== id));
+  };
+
+  const handleEdit = (id: string) => {
+    const l = links.find((link) => link.id === id);
+    if (l) {
+      setTitle(l.title);
+      setLink(l.link.replace("https://", ""));
+      setDescription(l.description);
+      setTags(l.tags || "");
+      setEditId(l.id);
+    }
+  };
+
+  return (
+    <div style={{ width: "100%" }}>
+      {/* form section */}
+      <form
+        onSubmit={handleSubmit}
+        style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
       >
-        <span
+        {/* adding new links button */}
+        <button
           style={{
-            backgroundColor: "#d1d1d1",
-            padding: "10px",
-            borderRadius: "10px 0 0 10px",
+            height: "4vh",
+            backgroundColor: "#8546f3ff",
+            color: "white",
+            borderRadius: "15px",
+            border: "none",
+            maxWidth: "25%",
+            marginTop: "5%",
           }}
         >
-          https://
-        </span>
-        <input
-          type="text"
-          id="link"
-          name="link"
-          placeholder="Link description"
+          Add New Link
+        </button>
+
+        <label
           style={{
-            border: "none",
-            outline: "none",
-            flex: 1,
-            padding: "10px",
+            fontSize: "75%",
           }}
-          aria-required="true"
+        >
+          Title*
+        </label>
+        <input
+          style={{
+            outline: "none",
+            border: "1px solid #3C7EC9",
+            padding: "1%",
+            borderRadius: "15px",
+            flex: 1,
+
+            fontSize: "0.8rem",
+            paddingLeft: "5px",
+          }}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Enter title"
         />
+
+        <label
+          style={{
+            fontSize: "75%",
+          }}
+        >
+          Link*
+        </label>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            outline: "none",
+            border: "1px solid #3C7EC9",
+            borderRadius: "15px",
+            flex: 1,
+
+            fontSize: "0.8rem",
+            paddingLeft: "5px",
+          }}
+        >
+          <span
+            style={{
+              padding: "10px",
+              background: "#ddd",
+              borderTopLeftRadius: "15px",
+              borderBottomLeftRadius: "15px",
+            }}
+          >
+            https://
+          </span>
+          <input
+            style={{
+              display: "flex",
+              alignItems: "center",
+              outline: "none",
+              border: "none",
+              padding: "1%",
+
+              flex: 1,
+
+              fontSize: "0.8rem",
+              paddingLeft: "5px",
+            }}
+            value={link}
+            onChange={(e) => setLink(e.target.value)}
+            placeholder="example.com"
+          />
+        </div>
+
+        <label
+          style={{
+            fontSize: "75%",
+          }}
+        >
+          Description*
+        </label>
+        <input
+          style={{
+            display: "flex",
+            alignItems: "center",
+            outline: "none",
+            border: "1px solid #3C7EC9",
+
+            padding: "1%",
+            borderRadius: "15px",
+            flex: 1,
+
+            fontSize: "0.8rem",
+            paddingLeft: "5px",
+          }}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Enter description"
+        />
+
+        <label
+          style={{
+            fontSize: "75%",
+          }}
+        >
+          Tags
+        </label>
+        <input
+          style={{
+            display: "flex",
+            alignItems: "center",
+            outline: "none",
+            border: "1px solid #3C7EC9",
+
+            padding: "1%",
+            borderRadius: "15px",
+            flex: 1,
+
+            fontSize: "0.8rem",
+            paddingLeft: "5px",
+          }}
+          value={tags}
+          onChange={(e) => setTags(e.target.value)}
+          placeholder="Comma separated"
+        />
+
+        <button
+          type="submit"
+          style={{
+            width: "100%",
+            height: "4vh",
+            backgroundColor: "#8546f3ff",
+            color: "white",
+            borderRadius: "15px",
+            border: "none",
+          }}
+        >
+          {editId ? "Update Link" : "Save Link"}
+        </button>
+      </form>
+
+      {/* cards to be displayed once user has entered details*/}
+      <div style={{ marginTop: "20px" }}>
+        {links.length === 0 ? (
+          <div
+            style={{
+              color: "#3C7EC1",
+              fontSize: "25px",
+              paddingLeft: "2%",
+
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <h3>
+              {" "}
+              <MdDoNotDisturbAlt size={30} color="#3C7EC1" /> No Links Found!{" "}
+            </h3>
+          </div>
+        ) : (
+          links.map((l) => (
+            <Cards
+              key={l.id}
+              item={l}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+            />
+          ))
+        )}
       </div>
-
-      {/* Description */}
-      <label htmlFor="description">Description*</label>
-      <input
-        type="text"
-        id="description"
-        name="description"
-        placeholder="Link description"
-        style={{
-          border: "1px solid #347fc4",
-          borderRadius: "15px",
-          padding: "10px",
-          outline: "none",
-        }}
-        aria-required="true"
-      />
-
-      {/*Tags */}
-      <label htmlFor="description">Tags(Comma Separated)</label>
-      <input
-        type="text"
-        id="description"
-        name="description"
-        placeholder="Link tags"
-        style={{
-          border: "1px solid #347fc4",
-          borderRadius: "15px",
-          padding: "10px",
-          outline: "none",
-        }}
-        aria-required="false"
-      />
-
-      {/* save Button */}
-      <button
-        type="submit"
-        style={{
-          marginTop: "10px",
-          padding: "10px",
-          borderRadius: "15px",
-          border: "none",
-          backgroundColor: "#7456F5",
-          color: "#fff",
-          cursor: "pointer",
-        }}
-        onClick={saveButton}
-      >
-        Save Link
-      </button>
-    </form>
+    </div>
   );
 }
