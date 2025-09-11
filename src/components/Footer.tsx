@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaFacebook, FaTwitter, FaGithub, FaPinterest } from 'react-icons/fa';
+import { FaFacebook, FaTwitter, FaGithub, FaPinterest,  } from 'react-icons/fa';
 
 const Footer: React.FC = () => {
   return (
@@ -14,6 +14,7 @@ const Footer: React.FC = () => {
         marginRight:'-5%'
       }}
     >
+     
       <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
         <FaFacebook size={30} color="#3b5998" />
       </a>

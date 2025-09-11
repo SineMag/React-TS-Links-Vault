@@ -1,127 +1,103 @@
-import React, { useState } from 'react';
-import { MdModeEdit } from 'react-icons/md';
-import { RiDeleteBinLine } from 'react-icons/ri';
-import Modal from './Modal';
-
-interface LinkItem {
-  id: string;
-  title: string;
-  url: string;
-  description: string;
-  tags: string[];
-}
+import React from "react";
+import { MdModeEdit } from "react-icons/md";
+import { RiDeleteBinLine } from "react-icons/ri";
+import type { LinkItem } from "../types";
 
 interface CardsProps {
-  link: LinkItem;
+  item: LinkItem;
+  onEdit: (id: string) => void;
   onDelete: (id: string) => void;
-  onEdit: (link: LinkItem) => void;
 }
 
-const Cards: React.FC<CardsProps> = ({ link, onDelete, onEdit }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleDeleteClick = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleConfirmDelete = () => {
-    onDelete(link.id);
-    setIsModalOpen(false);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleEdit = () => {
-    onEdit(link);
-  };
-
+export default function Cards({ item, onEdit, onDelete }: CardsProps) {
   return (
-    <>
-      <div className="link-card">
-        {/* Tags section */}
-        {link.tags.length > 0 && (
-          <div className="card-tags">
-            {link.tags.map((tag: string, index: number) => (
-              <span key={index} className="tag">
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
-
-        {/* Link details */}
-        <div className="card-details">
-          <h4>
-            Title: <span>{link.title}</span>
-          </h4>
-          <h4>
-            Link:{' '}
-            <a href={link.url} target="_blank" rel="noopener noreferrer">
-              {link.url}
-            </a>
-          </h4>
-          <h4>
-            Description: <span>{link.description}</span>
-          </h4>
-
-          {/* Edit and delete buttons */}
-          <div className="edit-delete-buttons">
-            <button className="edit-btn" onClick={handleEdit} title="Edit">
-              <MdModeEdit />
-            </button>
-            <button className="delete-btn" onClick={handleDeleteClick} title="Delete">
-              <RiDeleteBinLine color="red" />
-            </button>
-          </div>
-        </div>
+    <div
+      style={{
+        width: "100%",
+        minHeight: "120px",
+        borderRadius: "15px",
+        marginTop: "2%",
+        boxShadow: "1px 2px 3px 4px rgba(20,20,20,0.2)",
+        padding: "1%",
+        display: "flex",
+        gap: "1rem",
+        backgroundColor: "#fff",
+      }}
+    >
+      {/* Tags section */}
+      <div
+        style={{
+          border: "1px solid black",
+          width: "20%",
+          borderRadius: "15px",
+          padding: "10px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "75%",
+          textAlign: "center",
+          wordBreak: "break-word",
+        }}
+      >
+        {item.tags ? item.tags : "No Tags"}
       </div>
 
-      {/* Delete Confirmation Modal */}
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <div>
-          <h2 style={{ marginBottom: '1rem' }}>Confirm Delete</h2>
-          <p>Are you sure you want to delete the link "{link.title}"?</p>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            gap: '10px',
-            marginTop: '20px',
-          }}>
-            <button
-              onClick={handleCloseModal}
-              style={{
-                padding: '10px 20px',
-                borderRadius: '10px',
-                border: 'none',
-                backgroundColor: '#f0f0f0',
-                color: '#333',
-                cursor: 'pointer',
-                fontWeight: '600',
-              }}
-            >
-              Cancel
-            </button>
-            <button
-              onClick={handleConfirmDelete}
-              style={{
-                padding: '10px 20px',
-                borderRadius: '10px',
-                border: 'none',
-                backgroundColor: '#e74c3c',
-                color: 'white',
-                cursor: 'pointer',
-                fontWeight: '600',
-              }}
-            >
-              Delete
-            </button>
-          </div>
-        </div>
-      </Modal>
-    </>
-  );
-};
+      {/* Link details */}
+      <div style={{ flex: 1 }}>
+        <h4 style={{ marginBottom: "5px",  color:'#1B5C9F',  }}>
+           <span>{item.title}</span>
+        </h4>
+        <h4 style={{ marginBottom: "5px" }}>
+          {" "}
+          <a
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "grey", textDecoration:'none', fontSize:'80%' }}
+          >
+            {item.link}
+          </a>
+        </h4>
+        <h4 style={{
+          fontSize:'70%', color:'grey'
+        }} aria-placeholder="Please provide a description for your link">
+          <span>{item.description}</span>
+        </h4>
 
-export default Cards;
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            marginTop: "10px",
+            gap: "10px",
+          }}
+        >
+          <button
+            onClick={() => onEdit(item.id)}
+            style={{
+              border: "1px solid #ccc",
+              borderRadius: "5px",
+              padding: "5px",
+              cursor: "pointer",
+              background: "white",
+            }}
+          >
+            <MdModeEdit size={20} color="green" />
+          </button>
+          <button
+            onClick={() => onDelete(item.id)}
+            style={{
+              border: "none",
+              borderRadius: "5px",
+              padding: "5px",
+              cursor: "pointer",
+              background: "white",
+            }}
+          >
+            <RiDeleteBinLine size={22} color="red" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -1,9 +1,9 @@
 import React from "react";
 
 interface ModalProps {
-  isOpen: boolean;               // whether modal is visible
-  onClose: () => void;           // function to close modal
-  children: React.ReactNode;     // modal content
+  isOpen: boolean;               
+  onClose: () => void;          
+  children: React.ReactNode;    
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
@@ -23,7 +23,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
         justifyContent: "center",
         zIndex: 1000,
       }}
-      onClick={onClose} // close modal if clicking outside content
+      onClick={onClose}
     >
       <div
         style={{
@@ -33,7 +33,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
           minWidth: "300px",
           maxWidth: "90%",
         }}
-        onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+        onClick={(e) => e.stopPropagation()} 
       >
         {children}
       </div>
