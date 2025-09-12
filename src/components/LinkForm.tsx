@@ -1,38 +1,64 @@
-import { useState } from 'react';
-import React from 'react';
+import { useState } from "react";
+import React from "react";
 
-import type { Link } from '../types/Link';
+import type { Link } from "../types/Link";
 
 interface LinkFormProps {
-  onAddLink: (link: Omit<Link, 'id'>) => void;
+  onAddLink: (link: Omit<Link, "id">) => void;
+  onUpdateLink: (link: number) => void; // ????
+  title: string;
+  setTitle: React.Dispatch<React.SetStateAction<string>>;
+  url: string;
+  setUrl: React.Dispatch<React.SetStateAction<string>>;
+  description: string;
+  setDescription: React.Dispatch<React.SetStateAction<string>>;
+  tags: string[];
+  setTags: React.Dispatch<React.SetStateAction<string[]>>;
+  isUpdated: boolean;
+  setIsUpdated: React.Dispatch<React.SetStateAction<boolean>>;
+  currentId: number;
+  setCurrentId: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function LinkForm({ onAddLink }: LinkFormProps) {
-  const [title, setTitle] = useState('');
-  const [url, setUrl] = useState('');
-  const [description, setDescription] = useState('');
-  const [tags, setTags] = useState('');
-
+export default function LinkForm({
+  onAddLink,
+  onUpdateLink,
+  title,
+  setTitle,
+  url,
+  setUrl,
+  description,
+  setDescription,
+  tags,
+  setTags,
+  isUpdated,
+  setIsUpdated,
+  currentId,
+  setCurrentId,
+}: LinkFormProps) {
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!title || !url || !description) {
-      alert('Please fill in all required fields');
-      return;
+    if (isUpdated) {
+      onUpdateLink(currentId);
+    } else {
+      e.preventDefault();
+
+      if (!title || !url || !description) {
+        alert("Please fill in all required fields");
+        return;
+      }
+      onAddLink({
+        title,
+        url,
+        description,
+        tags: tags,
+      });
+
+      // Reset form
+      setTitle("");
+      setUrl("");
+      setDescription("");
+      setTags([]);
     }
-
-    onAddLink({
-      title,
-      url,
-      description,
-      tags: tags.split(',').map(tag => tag.trim()).filter(tag => tag !== '')
-    });
-
-    // Reset form
-    setTitle('');
-    setUrl('');
-    setDescription('');
-    setTags('');
   };
 
   return (
@@ -40,7 +66,9 @@ export default function LinkForm({ onAddLink }: LinkFormProps) {
       <h2>Add Your Link</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label htmlFor="title">Title <span className="required">*</span></label>
+          <label htmlFor="title">
+            Title <span className="required">*</span>
+          </label>
           <input
             type="text"
             id="title"
@@ -49,9 +77,11 @@ export default function LinkForm({ onAddLink }: LinkFormProps) {
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
-        
+
         <div className="form-group">
-          <label htmlFor="url">Link <span className="required">*</span></label>
+          <label htmlFor="url">
+            Link <span className="required">*</span>
+          </label>
           <div className="url-input">
             <span className="url-prefix">https://</span>
             <input
@@ -63,9 +93,11 @@ export default function LinkForm({ onAddLink }: LinkFormProps) {
             />
           </div>
         </div>
-        
+
         <div className="form-group">
-          <label htmlFor="description">Description <span className="required">*</span></label>
+          <label htmlFor="description">
+            Description <span className="required">*</span>
+          </label>
           <textarea
             id="description"
             placeholder="Enter description"
@@ -74,7 +106,7 @@ export default function LinkForm({ onAddLink }: LinkFormProps) {
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </div>
-        
+
         <div className="form-group">
           <label htmlFor="tags">Tags</label>
           <input
@@ -82,13 +114,23 @@ export default function LinkForm({ onAddLink }: LinkFormProps) {
             id="tags"
             placeholder="Comma separated"
             value={tags}
-            onChange={(e) => setTags(e.target.value)}
+            onChange={(e) => setTags([e.target.value])}
           />
         </div>
-        
-        <div className="form-buttons">
-          <button type="submit" className="btn btn-primary">Save Link</button>
-        </div>
+
+        {isUpdated ? (
+          <div className="form-buttons">
+            <button type="submit" className="btn btn-primary">
+              Update Link
+            </button>
+          </div>
+        ) : (
+          <div className="form-buttons">
+            <button type="submit" className="btn btn-primary">
+              Save Link
+            </button>
+          </div>
+        )}
       </form>
     </section>
   );
