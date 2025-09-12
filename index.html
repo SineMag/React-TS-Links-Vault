@@ -1,97 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nexus Cloud Shield</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://www.w3schools.com/lib/w3.js"></script>
-</head>
-<body>
-  <header>
-    <img src="assets/logo.png" alt="Nexus Logo" class="logo" />
-    <h1>Nexus Cloud Shield - Cyber Security</h1>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Links Vault</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="/public/favicon.ico" />
 
-  <nav class="card-nav">
-    <button onclick="scrollToCard(0)"> Cloud</button>
-    <button onclick="scrollToCard(1)"> Recovery</button>
-    <button onclick="scrollToCard(2)"> Security</button>
-    <button onclick="scrollToCard(3)"> Development</button>
-    <button onclick="scrollToCard(4)"> Network</button>
-    <button onclick="scrollToCard(5)"> Backup</button>
-    <button onclick="scrollToCard(6)"> Threats</button>
-    <button onclick="scrollToCard(7)"> Traffic</button>
-  </nav>
-
-  <main class="dashboard">
-    <section class="card">
-      <h2> Cloud Storage</h2>
-      <p>Internet: Good</p>
-      <p>Storage: 75% used</p>
-      <p>Next Update: 2025/09/01</p>
-      <span class="status red"> Warning</span>
-      <div class="chart" id="cloudChart"></div>
-    </section>
-
-    <section class="card">
-      <h2> Recovery</h2>
-      <p>Disaster Recovery: Updated</p>
-      <p>Safe Boot: Activated</p>
-      <p>Safe Mode: Active [Last Update: 2025/07/01]</p> <!--include stats on System Image Backu pg325-->
-      <span class="status green"><!--Green tick for pass/active--> Active</span>
-      <div class="chart" id="recoveryChart"></div>
-    </section>
-
-    <section class="card">
-      <h2> Security</h2>
-      <p>Access Logs Monitored</p>
-      <p>Firewall: Active [Last Update: 2024/01/03]</p>
-      <p>Risk Level: Moderate</p>
-      <span class="status red"><!--orange excl mark for warning--> Warning</span> <!--also include stats on updates vs threats chart-->
-    </section>
-
-    <section class="card">
-      <h2> Development</h2>
-      <p>Games in Dev: 3</p>
-      <p>Tools Installed: 12</p>
-      <p>Mobile App: 90% complete</p>
-      <span class="status yellow"> In Progress</span>
-    </section>
-
-    <section class="card">
-      <h2> Network Connectivity</h2>
-      <p>Speed: 300MBPS</p>
-      <p>Connected Devices: 215</p>
-      <p>Active Connections: 215</p>
-      <span class="status green">Active </span>
-    </section>
-
-    <section class="card">
-      <h2> Backup Systems</h2>
-      <p>System Image: Latest</p>
-      <p>Startup Repair: Available</p>
-      <p>Restore Point: 2025-07-01</p>
-      <span class="status blue"> Ready</span>
-    </section>
-
-    <section class="card">
-      <h2> Threat Detection</h2>
-      <p>Current Threats: 105</p>
-      <p>Critical: 82, Medium: 13, Low: 10</p>
-      <span class="status red"> Warning Alert</span>
-      <div class="chart" id="pieChart"></div>
-    </section>
-
-    <section class="card">
-      <h2> Network Traffic</h2>
-      <p>Live data from past 6 hours</p>
-      <p>Peak Usage: 94%</p>
-      <span class="status yellow"> In Progress</span>
-      <div class="chart" id="lineGraph"></div>
-    </section>
-  </main>
-
-  <script src="script.js"></script>
-</body>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
