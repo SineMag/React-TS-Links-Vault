@@ -1,71 +1,69 @@
-### Links Vault - React TypeScript Project
-A modern, responsive web application for storing and organizing your important links. Built with React, TypeScript, and Vite.
+<img src="https://socialify.git.ci/SineMag/React-TS-Links-Vault/image?language=1&owner=1&name=1&stargazers=1&theme=Light" alt="React-TS-Links-Vault" width="640" height="320" />
 
+# 🔗 Links Vault - React + TypeScript Project
 
-### Features
-* 🔍 Search through your links by title, URL, description, or tags
+A modern, responsive web app for **storing and organizing your important links**.  
+Built with ⚛️ React, 🟦 TypeScript, and ⚡ Vite.  
 
-* ➕ Add new links with title, URL, description, and tags
+---
 
-* 🏷️ Organize links with customizable tags
+## ✨ Features
+- 🔍 **Search** through your links by title, URL, description, or tags  
+- ➕ **Add new links** with title, URL, description, and tags  
+- 🏷️ **Organize** links with customizable tags  
+- 💾 **Data persistence** with `localStorage`  
+- 📱 **Responsive design** for mobile & desktop  
+- 🎨 **Clean, modern UI** styled with Bootstrap  
+- ⚡ **Blazing-fast development** using Vite  
 
-* 💾 Data persistence using localStorage
+---
 
-* 📱 Fully responsive design
+## 🛠️ Tech Stack
+- ⚛️ **Frontend:** React 18  
+- 🟦 **Language:** TypeScript  
+- ⚡ **Build Tool:** Vite  
+- 🎨 **Styling:** Bootstrap 5 + Custom CSS  
+- 🎭 **Icons:** React Icons  
+- 🔄 **State Management:** React `useState` & `useEffect`  
 
-* 🎨 Clean, modern UI with Bootstrap styling
+---
 
-* ⚡ Fast development with Vite
+## 📦 Prerequisites
+Make sure you have installed:  
+- 📌 **Node.js** (v14 or higher)  
+- 📌 **npm** (Node Package Manager)  
 
-### Tech Stack
-* Frontend Framework: React 18
+---
 
-* Language: TypeScript
-
-* Build Tool: Vite
-
-* Styling: Bootstrap 5 + Custom CSS
-
-* Icons: React Icons
-
-* State Management: React useState & useEffect hooks
-
-### Prerequisites
-Before running this project, make sure you have the following installed:
-
-```Node.js (version 14 or higher)```
-
-```npm (node package manager)```
-
-#### Installation
-1. Clone the repository
-``` bash
-# git clone <your-repository-url>
-cd links-vault 
+## 🚀 Installation & Setup
+1. Clone the repository**  
+```bash
+git clone https://github.com/SineMag/React-TS-Links-Vault/
+cd react-ts-links-vault
 ```
 
 2. Install dependencies
-``` bash
+```bash
 npm install
 ```
 
-3. Install React Icons
-
+4. Install React Icons
 ```bash
 npm install react-icons
 ```
 
-4. () Install Bootstrap
+6. Install Bootstrap
 ```bash
 npm install bootstrap
 ```
 
-5. Start the development server
+8. Run the Development Server
 ```bash
 npm run dev
 ```
+---
 
-### Project Structure
+## 📂 Project Structure
 ```
  src/
 ├── components/
@@ -82,75 +80,69 @@ npm run dev
 ├── main.tsx
 └── index.css
 ```
+---
 
-### Usage
-**Adding a new link:**
+## 🎯 Usage
+
+### Adding a new link
 
 * Fill in the required fields (Title, URL, Description)
 
-* Add optional tags separated by commas
+* Add optional tags (comma-separated)
 
-* Click "Save Link" to add it to your collection
+* Click Save Link to add it
 
-**Searching links:**
+### Searching links
 
-* Use the search bar at the top to filter links by any field
+* Use the search bar to filter by title, URL, description, or tags
 
-* The search is case-insensitive and matches against title, URL, description, and tags
+* Case-insensitive matching
 
-**Managing links:**
+### Managing links
 
-* View all your links in the card layout
+* View all links in a card layout
 
-* Delete links using the trash icon
+🗑️ Delete links with the trash icon
 
-* Click on any link to open it in a new tab
+🔗 Click a link to open in a new tab
 
-### Customization
-* You can customize the application by:
+### 🎨 Customization
 
-* Modifying the color scheme in index.css
+🎨 Modify colors in index.css
 
-* Adding new fields to the Link type in types/Link.ts
+📝 Add new fields in types/Link.ts
 
-* Changing the layout in the component files
+🛠️ Adjust layouts in component files
 
-* Adding new functionality to the custom hooks
+🧩 Extend functionality with custom hooks
 
-### Browser Support
-This application supports all modern browsers including:
-```
-Chrome (latest)
 
-Firefox (latest)
+### 🌍 Browser Support
 
-Safari (latest)
+✅ Chrome (latest)
+✅ Firefox (latest)
+✅ Safari (latest)
+✅ Edge (latest)
 
-Edge (latest)
-```
+### 🤝 Contributing
 
-### Contributing
-Fork the repository
+🍴 Fork the repo
 
-Create a feature branch (git checkout -b feature/amazing-feature)
+🌱 Create a feature branch → git checkout -b feature/amazing-feature
 
-Commit your changes (git commit -m 'Add some amazing feature')
+💾 Commit changes → git commit -m 'Add amazing feature'
 
-Push to the branch (git push origin feature/amazing-feature)
+🚀 Push to branch → git push origin feature/amazing-feature
 
-Open a Pull Request
+🔁 Open a Pull Request
 
-### License
-This project is licensed under the MIT License - see the LICENSE file for details.
+### 🙏 Acknowledgments
 
-### Acknowledgments
-Icons provided by React Icons
+🎭 Icons:  ⚛️ [React](https://react.dev) Icons
 
-UI components styled with Bootstrap
+🎨 Styling: [Bootstrap](https://getbootstrap.com)
 
-Built with Vite for fast development
+⚡ Build Tool: [Vite](https://vitejs.dev)
 
-Support
-If you have any questions or issues, please open an issue on the [GitHub ](https://github.com/SineMag/React-TS-Links-Vault.git) repository
-
-Happy organizing! 📚
+Happy organizing! 📚✨
+---
