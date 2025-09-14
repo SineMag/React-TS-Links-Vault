@@ -41,13 +41,15 @@ export default function Header({ searchQuery, onSearchChange }: HeaderProps) {
       </div>
       <div className="search-bar">
         <div className="search-input">
-          <input
+          <input 
             type="text"
             placeholder="Search your links..."
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
           />
-          <i className="fas fa-search"></i>
+          <i className="fas fa-search" style={{
+            color :'black'
+          }}></i>
         </div>
       </div>
     </header>

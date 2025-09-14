@@ -61,13 +61,7 @@ export default function LinkCard({
       </div>
       <div className="card-content">
         <h3>{link.title}</h3>
-        <a
-          href={`https://${link.url}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {link.url}
-        </a>
+        
         <p>{link.description}</p>
       </div>
       <div className="card-actions">
@@ -85,6 +79,7 @@ export default function LinkCard({
         >
           <i className="fas fa-trash-alt"></i>
         </button>
+        
       </div>
     </div>
   );

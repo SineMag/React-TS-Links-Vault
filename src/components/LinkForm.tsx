@@ -119,14 +119,20 @@ export default function LinkForm({
         </div>
 
         {isUpdated ? (
-          <div className="form-buttons">
-            <button type="submit" className="btn btn-primary">
+          <div className="form-buttons" style={{
+            width:'100%'
+          }}>
+            <button type="submit" style={{
+            width:'100%'
+          }} className="btn btn-primary">
               Update Link
             </button>
           </div>
         ) : (
-          <div className="form-buttons">
-            <button type="submit" className="btn btn-primary">
+          <div className="form-buttons" >
+            <button type="submit" style={{
+            width:'100%'
+          }} className="btn btn-primary">
               Save Link
             </button>
           </div>

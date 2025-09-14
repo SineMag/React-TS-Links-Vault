@@ -7,6 +7,8 @@ import LinksSection from "./components/LinksSection";
 import Footer from "./components/Footer";
 import "./App.css";
 
+
+//example link card.. remove later!!!
 const sampleLinks: Link[] = [
   {
     id: 1,
@@ -16,14 +18,7 @@ const sampleLinks: Link[] = [
       "The official React JavaScript library website with documentation and tutorials",
     tags: ["react", "frontend", "javascript"],
   },
-  {
-    id: 2,
-    title: "MDN Web Docs",
-    url: "developer.mozilla.org",
-    description:
-      "Resources for developers, by developers with documentation for web technologies",
-    tags: ["documentation", "web", "learning"],
-  },
+  
 ];
 
 function App() {
@@ -82,7 +77,10 @@ function App() {
     <div className="container">
       <Header searchQuery={searchQuery} onSearchChange={setSearchQuery} />
 
-      <div className="main-content">
+      <div className="main-content" style={{
+         display:'flex',
+        flexDirection:'column'
+      }}>
         <LinkForm
           onAddLink={handleAddLink}
           onUpdateLink={handleUpdateLink}
