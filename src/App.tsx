@@ -7,8 +7,6 @@ import LinksSection from "./components/LinksSection";
 import Footer from "./components/Footer";
 import "./App.css";
 
-
-//example link card.. remove later!!!
 const sampleLinks: Link[] = [
   {
     id: 1,
@@ -18,7 +16,6 @@ const sampleLinks: Link[] = [
       "The official React JavaScript library website with documentation and tutorials",
     tags: ["react", "frontend", "javascript"],
   },
-  
 ];
 
 function App() {
@@ -45,22 +42,9 @@ function App() {
     });
   }, [links, searchQuery]);
 
-  function handleUpdateLink(id: number) {
-    console.log("updated...");
-    const updated: Link[] = links.map((l) => {
-      l.id === id
-        ? {
-            id: id,
-            title: title,
-            description: description,
-            tags: tags,
-            url: url,
-          }
-        : l;
-    });
+  function handleUpdateLink(updatedLink: Link) {
+    const updated = links.map((l) => (l.id === updatedLink.id ? updatedLink : l));
     setLinks(updated);
-
-    // come back... please....
   }
 
   const handleAddLink = (newLink: Omit<Link, "id">) => {
@@ -77,10 +61,7 @@ function App() {
     <div className="container">
       <Header searchQuery={searchQuery} onSearchChange={setSearchQuery} />
 
-      <div className="main-content" style={{
-         display:'flex',
-        flexDirection:'column'
-      }}>
+      <div className="main-content" style={{ display: "flex", flexDirection: "column" }}>
         <LinkForm
           onAddLink={handleAddLink}
           onUpdateLink={handleUpdateLink}
@@ -97,21 +78,15 @@ function App() {
           currentId={currentId}
           setCurrentId={setCurrentId}
         />
+
         <LinksSection
           links={filteredLinks}
           onDeleteLink={handleDeleteLink}
-          title={title}
           setTitle={setTitle}
-          tags={tags}
-          setTags={setTags}
-          description={description}
-          setDescription={setDescription}
-          url={url}
           setUrl={setUrl}
-          setLinks={setLinks}
-          isUpdated={isUpdated}
+          setDescription={setDescription}
+          setTags={setTags}
           setIsUpdated={setIsUpdated}
-          currentId={currentId}
           setCurrentId={setCurrentId}
         />
       </div>

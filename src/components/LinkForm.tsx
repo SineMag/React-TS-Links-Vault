@@ -1,11 +1,9 @@
-import { useState } from "react";
 import React from "react";
-
 import type { Link } from "../types/Link";
 
 interface LinkFormProps {
   onAddLink: (link: Omit<Link, "id">) => void;
-  onUpdateLink: (link: number) => void; // ????
+  onUpdateLink: (link: Link) => void; // pass full link object
   title: string;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
   url: string;
@@ -37,33 +35,37 @@ export default function LinkForm({
   setCurrentId,
 }: LinkFormProps) {
   const handleSubmit = (e: React.FormEvent) => {
-    if (isUpdated) {
-      onUpdateLink(currentId);
-    } else {
-      e.preventDefault();
+    e.preventDefault();
 
-      if (!title || !url || !description) {
-        alert("Please fill in all required fields");
-        return;
-      }
-      onAddLink({
+    if (!title || !url || !description) {
+      alert("Please fill in all required fields");
+      return;
+    }
+
+    if (isUpdated) {
+      onUpdateLink({
+        id: currentId,
         title,
         url,
         description,
-        tags: tags,
+        tags,
       });
-
-      // Reset form
-      setTitle("");
-      setUrl("");
-      setDescription("");
-      setTags([]);
+      setIsUpdated(false);
+    } else {
+      onAddLink({ title, url, description, tags });
     }
+
+    // Reset form
+    setTitle("");
+    setUrl("");
+    setDescription("");
+    setTags([]);
+    setCurrentId(0);
   };
 
   return (
     <section className="form-section">
-      <h2>Add Your Link</h2>
+      <h2>{isUpdated ? "Update Link" : "Add Your Link"}</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="title">
@@ -113,30 +115,18 @@ export default function LinkForm({
             type="text"
             id="tags"
             placeholder="Comma separated"
-            value={tags}
-            onChange={(e) => setTags([e.target.value])}
+            value={tags.join(", ")}
+            onChange={(e) =>
+              setTags(e.target.value.split(",").map((t) => t.trim()))
+            }
           />
         </div>
 
-        {isUpdated ? (
-          <div className="form-buttons" style={{
-            width:'100%'
-          }}>
-            <button type="submit" style={{
-            width:'100%'
-          }} className="btn btn-primary">
-              Update Link
-            </button>
-          </div>
-        ) : (
-          <div className="form-buttons" >
-            <button type="submit" style={{
-            width:'100%'
-          }} className="btn btn-primary">
-              Save Link
-            </button>
-          </div>
-        )}
+        <div className="form-buttons" style={{ width: "100%" }}>
+          <button type="submit" className="btn btn-primary" style={{ width: "100%" }}>
+            {isUpdated ? "Update Link" : "Save Link"}
+          </button>
+        </div>
       </form>
     </section>
   );

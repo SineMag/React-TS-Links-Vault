@@ -5,36 +5,22 @@ import React from "react";
 interface LinksSectionProps {
   links: Link[];
   onDeleteLink: (id: number) => void;
-  title: string;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
-  url: string;
   setUrl: React.Dispatch<React.SetStateAction<string>>;
-  description: string;
   setDescription: React.Dispatch<React.SetStateAction<string>>;
-  tags: string[];
   setTags: React.Dispatch<React.SetStateAction<string[]>>;
-  setLinks: React.Dispatch<React.SetStateAction<Link[]>>;
-  isUpdated: boolean;
   setIsUpdated: React.Dispatch<React.SetStateAction<boolean>>;
-  currentId: number;
   setCurrentId: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function LinksSection({
   links,
   onDeleteLink,
-  title,
   setTitle,
-  url,
   setUrl,
-  description,
   setDescription,
-  tags,
   setTags,
-  setLinks,
-  isUpdated,
   setIsUpdated,
-  currentId,
   setCurrentId,
 }: LinksSectionProps) {
   return (
@@ -52,24 +38,21 @@ export default function LinksSection({
           </div>
         ) : (
           links.map((link) => (
+            <div style={{
+            width:'100%'
+            }}>
             <LinkCard
+              key={link.id}
               link={link}
               onDelete={() => onDeleteLink(link.id)}
-              title={title}
               setTitle={setTitle}
-              tags={tags}
-              setTags={setTags}
-              description={description}
-              setDescription={setDescription}
-              url={url}
               setUrl={setUrl}
-              setLinks={setLinks}
-              isUpdated={isUpdated}
+              setDescription={setDescription}
+              setTags={setTags}
               setIsUpdated={setIsUpdated}
-              links={links}
-              currentId={currentId}
               setCurrentId={setCurrentId}
             />
+            </div>
           ))
         )}
       </div>
