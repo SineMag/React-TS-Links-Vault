@@ -1,11 +1,10 @@
-import React from 'react';
 
 interface SearchBarProps {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
 }
 
-function SearchBar({ searchQuery, setSearchQuery }: SearchBarProps) {
+export default function SearchBar({ searchQuery, setSearchQuery }: SearchBarProps) {
   return (
     <div className="search-bar">
       <div className="search-input">

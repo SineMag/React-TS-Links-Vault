@@ -4,7 +4,6 @@ import { FaSearch } from "react-icons/fa";
 import { FaUsersViewfinder } from "react-icons/fa6";
 import { FaHistory } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
-import React from 'react';
 
 interface HeaderProps {
   searchQuery: string;
