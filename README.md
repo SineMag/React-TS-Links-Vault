@@ -13,16 +13,18 @@ Built with ⚛️ React, 🟦 TypeScript, and ⚡ Vite.
 - 🏷️ **Organize** links with customizable tags  
 - 💾 **Data persistence** with `localStorage`  
 - 📱 **Responsive design** for mobile & desktop  
-- 🎨 **Clean, modern UI** styled with Bootstrap  
+- 🎛️ **Toast notifications** for add/update/delete (plain CSS)  
+- ✅ **URL validation & normalization** (strips protocol, basic format check)  
+- 🎨 **Clean, modern UI** styled with plain CSS + media queries (no third‑party CSS)  
 - ⚡ **Blazing-fast development** using Vite  
 
 ---
 
 ## 🛠️ Tech Stack
-- ⚛️ **Frontend:** React 18  
+- ⚛️ **Frontend:** React 19  
 - 🟦 **Language:** TypeScript  
 - ⚡ **Build Tool:** Vite  
-- 🎨 **Styling:** Bootstrap 5 + Custom CSS  
+- 🎨 **Styling:** Plain CSS + Media Queries  
 - 🎭 **Icons:** React Icons  
 - 🔄 **State Management:** React `useState` & `useEffect`  
 
@@ -71,6 +73,7 @@ npm run dev
 │   ├── LinkForm.tsx
 │   ├── LinkCard.tsx
 │   ├── LinksSection.tsx
+│   ├── Toast.tsx
 │   └── Footer.tsx
 ├── types/
 │   └── Link.ts
@@ -78,7 +81,7 @@ npm run dev
 │   └── useLocalStorage.ts
 ├── App.tsx
 ├── main.tsx
-└── index.css
+└── App.css
 ```
 ---
 
@@ -108,7 +111,7 @@ npm run dev
 
 ### 🎨 Customization
 
-🎨 Modify colors in index.css
+🎨 Modify colors in `src/App.css`
 
 📝 Add new fields in types/Link.ts
 
@@ -139,8 +142,6 @@ npm run dev
 ### 🙏 Acknowledgments
 
 🎭 Icons:  ⚛️ [React](https://react.dev) Icons
-
-🎨 Styling: [Bootstrap](https://getbootstrap.com)
 
 ⚡ Build Tool: [Vite](https://vitejs.dev)
 

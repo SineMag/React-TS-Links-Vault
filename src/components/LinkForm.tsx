@@ -42,17 +42,31 @@ export default function LinkForm({
       return;
     }
 
+    // Normalize URL: remove protocol and www., trim spaces
+    const raw = url.trim();
+    const normalizedUrl = raw
+      .replace(/^https?:\/\//i, "")
+      .replace(/^www\./i, "")
+      .replace(/\/$/, "");
+
+    // Basic validation: must contain at least one dot and no spaces
+    const isValid = /^[^\s]+\.[^\s]+$/i.test(normalizedUrl);
+    if (!isValid) {
+      alert("Please enter a valid URL, e.g. example.com or docs.example.com");
+      return;
+    }
+
     if (isUpdated) {
       onUpdateLink({
         id: currentId,
         title,
-        url,
+        url: normalizedUrl,
         description,
         tags,
       });
       setIsUpdated(false);
     } else {
-      onAddLink({ title, url, description, tags });
+      onAddLink({ title, url: normalizedUrl, description, tags });
     }
 
     // Reset form
@@ -117,13 +131,18 @@ export default function LinkForm({
             placeholder="Comma separated"
             value={tags.join(", ")}
             onChange={(e) =>
-              setTags(e.target.value.split(",").map((t) => t.trim()))
+              setTags(
+                e.target.value
+                  .split(",")
+                  .map((t) => t.trim())
+                  .filter((t) => t.length > 0)
+              )
             }
           />
         </div>
 
-        <div className="form-buttons" style={{ width: "100%" }}>
-          <button type="submit" className="btn btn-primary" style={{ width: "100%" }}>
+        <div className="form-buttons full-width">
+          <button type="submit" className="btn btn-primary full-width">
             {isUpdated ? "Update Link" : "Save Link"}
           </button>
         </div>
