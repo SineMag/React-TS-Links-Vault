@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import type { Link } from "./types/Link";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import Header from "./components/Header";
@@ -8,19 +8,11 @@ import Footer from "./components/Footer";
 import Toast from "./components/Toast";
 import "./App.css";
 
-const sampleLinks: Link[] = [
-  {
-    id: 1,
-    title: "React Official Website",
-    url: "reactjs.org",
-    description:
-      "The official React JavaScript library website with documentation and tutorials",
-    tags: ["react", "frontend", "javascript"],
-  },
-];
+// Start with an empty list so no links appear until user saves.
+const initialLinks: Link[] = [];
 
 function App() {
-  const [links, setLinks] = useLocalStorage<Link[]>("links", sampleLinks);
+  const [links, setLinks] = useLocalStorage<Link[]>("links", initialLinks);
   const [searchQuery, setSearchQuery] = useState("");
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
@@ -46,26 +38,37 @@ function App() {
     });
   }, [links, searchQuery]);
 
+  // One-time migration: remove any previously seeded sample link from older versions
+  useEffect(() => {
+    const hasSeed = links.some(
+      (l) => l.title === "React Official Website" && l.url === "reactjs.org"
+    );
+    if (hasSeed) {
+      setLinks((prev) => prev.filter((l) => !(l.title === "React Official Website" && l.url === "reactjs.org")));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   function handleUpdateLink(updatedLink: Link) {
     const updated = links.map((l) => (l.id === updatedLink.id ? updatedLink : l));
     setLinks(updated);
     setToastType("success");
-    setToastMsg("Link updated");
+    setToastMsg("Successfully updated link");
     setShowToast(true);
   }
 
   const handleAddLink = (newLink: Omit<Link, "id">) => {
     setLinks((prev) => [...prev, { ...newLink, id: Date.now() }]);
     setToastType("success");
-    setToastMsg("Link saved");
+    setToastMsg("Successfully saved link");
     setShowToast(true);
   };
 
   const handleDeleteLink = (id: number) => {
-    if (window.confirm("Are you sure you want to delete this link?")) {
+    if (window.confirm("Are you sure you want to delete this saved link?")) {
       setLinks((prev) => prev.filter((link) => link.id !== id));
       setToastType("info");
-      setToastMsg("Link deleted");
+      setToastMsg("Successfully deleted link");
       setShowToast(true);
     }
   };

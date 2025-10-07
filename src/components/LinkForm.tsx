@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import type { Link } from "../types/Link";
 
 interface LinkFormProps {
@@ -34,6 +34,13 @@ export default function LinkForm({
   currentId,
   setCurrentId,
 }: LinkFormProps) {
+  const [tagsInput, setTagsInput] = useState("");
+
+  // Keep the input in sync when loading an existing item for edit
+  useEffect(() => {
+    setTagsInput(tags.join(", "));
+  }, [tags]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -56,6 +63,12 @@ export default function LinkForm({
       return;
     }
 
+    // Ensure any remaining input gets converted to tags on submit
+    if (tagsInput.trim() !== "") {
+      commitTag(tagsInput);
+      setTagsInput("");
+    }
+
     if (isUpdated) {
       onUpdateLink({
         id: currentId,
@@ -76,6 +89,36 @@ export default function LinkForm({
     setTags([]);
     setCurrentId(0);
   };
+
+  function commitTag(raw: string) {
+    const parts = raw
+      .split(",")
+      .map((s) => s.trim().replace(/,$/, ""))
+      .filter((s) => s.length > 0);
+    if (parts.length === 0) return;
+    const current = new Set(tags);
+    for (const p of parts) current.add(p);
+    setTags(Array.from(current));
+  }
+
+  function onTagsKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "," || e.key === "Enter") {
+      e.preventDefault();
+      commitTag(tagsInput);
+      setTagsInput("");
+    } else if (e.key === "Backspace" && tagsInput === "" && tags.length > 0) {
+      // Remove last tag when input empty
+      setTags(tags.slice(0, -1));
+    }
+  }
+
+  function onTagsBlur() {
+    // Add any remaining text on blur
+    if (tagsInput.trim() !== "") {
+      commitTag(tagsInput);
+      setTagsInput("");
+    }
+  }
 
   return (
     <section className="form-section">
@@ -128,17 +171,19 @@ export default function LinkForm({
           <input
             type="text"
             id="tags"
-            placeholder="Comma separated"
-            value={tags.join(", ")}
-            onChange={(e) =>
-              setTags(
-                e.target.value
-                  .split(",")
-                  .map((t) => t.trim())
-                  .filter((t) => t.length > 0)
-              )
-            }
+            placeholder="Type a tag and press comma or Enter"
+            value={tagsInput}
+            onChange={(e) => setTagsInput(e.target.value)}
+            onKeyDown={onTagsKeyDown}
+            onBlur={onTagsBlur}
           />
+          {tags.length > 0 && (
+            <div className="card-tags tag-list">
+              {tags.map((t) => (
+                <span key={t} className="tag">{t}</span>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="form-buttons full-width">
