@@ -36,10 +36,12 @@ export default function LinkForm({
 }: LinkFormProps) {
   const [tagsInput, setTagsInput] = useState("");
 
-  // Keep the input in sync when loading an existing item for edit
+  // Clear tags input when entering edit mode
   useEffect(() => {
-    setTagsInput(tags.join(", "));
-  }, [tags]);
+    if (isUpdated) {
+      setTagsInput("");
+    }
+  }, [isUpdated]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,7 +68,6 @@ export default function LinkForm({
     // Ensure any remaining input gets converted to tags on submit
     if (tagsInput.trim() !== "") {
       commitTag(tagsInput);
-      setTagsInput("");
     }
 
     if (isUpdated) {
@@ -87,27 +88,37 @@ export default function LinkForm({
     setUrl("");
     setDescription("");
     setTags([]);
+    setTagsInput("");
     setCurrentId(0);
   };
 
   function commitTag(raw: string) {
+    if (!raw.trim()) return;
+    
     const parts = raw
       .split(",")
-      .map((s) => s.trim().replace(/,$/, ""))
+      .map((s) => s.trim())
       .filter((s) => s.length > 0);
+    
     if (parts.length === 0) return;
+    
     const current = new Set(tags);
-    for (const p of parts) current.add(p);
+    for (const p of parts) {
+      if (p) {
+        current.add(p);
+      }
+    }
     setTags(Array.from(current));
+    setTagsInput("");
   }
 
   function onTagsKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === "," || e.key === "Enter") {
+    if (e.key === "Enter") {
       e.preventDefault();
       commitTag(tagsInput);
-      setTagsInput("");
     } else if (e.key === "Backspace" && tagsInput === "" && tags.length > 0) {
       // Remove last tag when input empty
+      e.preventDefault();
       setTags(tags.slice(0, -1));
     }
   }
@@ -171,7 +182,7 @@ export default function LinkForm({
           <input
             type="text"
             id="tags"
-            placeholder="Type a tag and press comma or Enter"
+            placeholder="Type a tag and press Enter"
             value={tagsInput}
             onChange={(e) => setTagsInput(e.target.value)}
             onKeyDown={onTagsKeyDown}

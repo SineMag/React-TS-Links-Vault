@@ -1,5 +1,6 @@
 import type { Link } from "../types/Link";
 import LinkCard from "./LinkCard";
+import { IoIosLink } from "react-icons/io";
 import React from "react";
 
 interface LinksSectionProps {
@@ -32,15 +33,12 @@ export default function LinksSection({
       <div className="links-grid">
         {links.length === 0 ? (
           <div className="empty-state">
-            <i className="fas fa-link"></i>
+            <IoIosLink className="empty-icon" />
             <h3>No links yet</h3>
             <p>Add your first link using the form</p>
           </div>
         ) : (
           links.map((link) => (
-            <div style={{
-            width:'100%'
-            }}>
             <LinkCard
               key={link.id}
               link={link}
@@ -52,7 +50,6 @@ export default function LinksSection({
               setIsUpdated={setIsUpdated}
               setCurrentId={setCurrentId}
             />
-            </div>
           ))
         )}
       </div>

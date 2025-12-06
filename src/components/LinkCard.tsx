@@ -1,5 +1,6 @@
 // File: src/components/LinkCard.tsx
 import React from "react";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import type { Link } from "../types/Link";
 
 interface LinkCardProps {
@@ -59,14 +60,14 @@ export default function LinkCard({
           title="Edit"
           onClick={editFunction}
         >
-          <i className="fas fa-edit"></i>
+          <FaEdit />
         </button>
         <button
           className="action-btn delete-btn"
           title="Delete"
-          onClick={onDelete }
+          onClick={onDelete}
         >
-          <i className="fas fa-trash-alt"></i>
+          <FaTrashAlt />
         </button>
       </div>
     </div>

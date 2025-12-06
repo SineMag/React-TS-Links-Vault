@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import type { Link } from "./types/Link";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import Header from "./components/Header";
@@ -37,17 +37,6 @@ function App() {
       );
     });
   }, [links, searchQuery]);
-
-  // One-time migration: remove any previously seeded sample link from older versions
-  useEffect(() => {
-    const hasSeed = links.some(
-      (l) => l.title === "React Official Website" && l.url === "reactjs.org"
-    );
-    if (hasSeed) {
-      setLinks((prev) => prev.filter((l) => !(l.title === "React Official Website" && l.url === "reactjs.org")));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   function handleUpdateLink(updatedLink: Link) {
     const updated = links.map((l) => (l.id === updatedLink.id ? updatedLink : l));
