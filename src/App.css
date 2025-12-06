@@ -221,8 +221,8 @@ header {
         }
 
         .links-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 20px;
         }
 
@@ -230,11 +230,8 @@ header {
             border: 2px solid #f1f5f9;
             border-radius: 10px;
             padding: 20px;
-
+            width: 100%;
             transition: all 0.2s ease;
-        }
-
-        .link-card {
             cursor: default;
         }
         
@@ -355,7 +352,7 @@ header {
             text-align: center;
             padding: 40px 20px;
             color: #94a3b8;
-            grid-column: 1 / -1;
+            width: 100%;
         }
 
         .empty-state .empty-icon {
@@ -400,16 +397,18 @@ header {
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 3000;
+            animation: fadeIn 0.2s ease;
         }
 
         .modal-content {
             background-color: white;
-            padding: 25px;
+            padding: 30px;
             border-radius: 12px;
             width: 90%;
             max-width: 500px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: slideUp 0.3s ease;
         }
 
         .modal-header {
@@ -419,19 +418,112 @@ header {
             margin-bottom: 20px;
         }
 
+        .modal-header h3 {
+            color: #1e293b;
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
         .modal-close {
             background: none;
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
             color: #64748b;
+            transition: color 0.2s ease;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+        }
+
+        .modal-close:hover {
+            color: #1e293b;
+            background: #f1f5f9;
+        }
+
+        .modal-body {
+            margin-bottom: 25px;
+        }
+
+        .modal-body p {
+            color: #475569;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .modal-body strong {
+            color: #1e293b;
+        }
+
+        .modal-warning {
+            color: #ef4444;
+            font-weight: 500;
         }
 
         .modal-buttons {
             display: flex;
             justify-content: flex-end;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
+        }
+
+        .btn-secondary {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #e2e8f0;
+            color: #1e293b;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Responsive design - All required breakpoints */
@@ -483,10 +575,6 @@ header {
             
             .form-section, .links-section {
                 padding: 20px;
-            }
-            
-            .links-grid {
-                grid-template-columns: 1fr;
             }
             
             h1 {
@@ -626,9 +714,16 @@ header {
             animation: toast-in 250ms ease-out;
         }
 
-        .toast-success { border-left: 6px solid #10b981; }
-        .toast-error { border-left: 6px solid #ef4444; }
-        .toast-info { border-left: 6px solid #3b82f6; }
+        .toast-success { 
+            border-left: 6px solid #10b981; 
+        }
+        .toast-error { 
+            border-left: 6px solid #ef4444;
+            background: #dc2626;
+        }
+        .toast-info { 
+            border-left: 6px solid #3b82f6; 
+        }
 
         .toast-close {
             background: transparent;

@@ -6,6 +6,7 @@ import LinkForm from "./components/LinkForm";
 import LinksSection from "./components/LinksSection";
 import Footer from "./components/Footer";
 import Toast from "./components/Toast";
+import DeleteModal from "./components/DeleteModal";
 import "./App.css";
 
 // Start with an empty list so no links appear until user saves.
@@ -23,6 +24,8 @@ function App() {
   const [toastMsg, setToastMsg] = useState<string>("");
   const [toastType, setToastType] = useState<"success" | "error" | "info">("info");
   const [showToast, setShowToast] = useState<boolean>(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState<boolean>(false);
+  const [linkToDelete, setLinkToDelete] = useState<{ id: number; title: string } | null>(null);
 
   const filteredLinks = useMemo(() => {
     if (!searchQuery) return links;
@@ -53,12 +56,18 @@ function App() {
     setShowToast(true);
   };
 
-  const handleDeleteLink = (id: number) => {
-    if (window.confirm("Are you sure you want to delete this saved link?")) {
-      setLinks((prev) => prev.filter((link) => link.id !== id));
-      setToastType("info");
+  const handleDeleteClick = (id: number, title: string) => {
+    setLinkToDelete({ id, title });
+    setDeleteModalOpen(true);
+  };
+
+  const handleDeleteConfirm = () => {
+    if (linkToDelete) {
+      setLinks((prev) => prev.filter((link) => link.id !== linkToDelete.id));
+      setToastType("error");
       setToastMsg("Successfully deleted link");
       setShowToast(true);
+      setLinkToDelete(null);
     }
   };
 
@@ -86,7 +95,7 @@ function App() {
 
         <LinksSection
           links={filteredLinks}
-          onDeleteLink={handleDeleteLink}
+          onDeleteClick={handleDeleteClick}
           setTitle={setTitle}
           setUrl={setUrl}
           setDescription={setDescription}
@@ -104,6 +113,17 @@ function App() {
             onClose={() => setShowToast(false)}
           />
         </div>
+      )}
+      {deleteModalOpen && linkToDelete && (
+        <DeleteModal
+          isOpen={deleteModalOpen}
+          onClose={() => {
+            setDeleteModalOpen(false);
+            setLinkToDelete(null);
+          }}
+          onConfirm={handleDeleteConfirm}
+          linkTitle={linkToDelete.title}
+        />
       )}
     </div>
   );

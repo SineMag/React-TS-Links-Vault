@@ -5,7 +5,7 @@ import React from "react";
 
 interface LinksSectionProps {
   links: Link[];
-  onDeleteLink: (id: number) => void;
+  onDeleteClick: (id: number, title: string) => void;
   setTitle: React.Dispatch<React.SetStateAction<string>>;
   setUrl: React.Dispatch<React.SetStateAction<string>>;
   setDescription: React.Dispatch<React.SetStateAction<string>>;
@@ -16,7 +16,7 @@ interface LinksSectionProps {
 
 export default function LinksSection({
   links,
-  onDeleteLink,
+  onDeleteClick,
   setTitle,
   setUrl,
   setDescription,
@@ -42,7 +42,7 @@ export default function LinksSection({
             <LinkCard
               key={link.id}
               link={link}
-              onDelete={() => onDeleteLink(link.id)}
+              onDelete={() => onDeleteClick(link.id, link.title)}
               setTitle={setTitle}
               setUrl={setUrl}
               setDescription={setDescription}
